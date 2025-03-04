@@ -1,0 +1,21 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    align-items: center;
+    font-size: 32px;
+    list-style: none;
+}
+img {
+    vertical-align: baseline;
+    padding-bottom: 5px ;
+    
+}
+a{
+    font-size: 25px;
+}
+ a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+ }

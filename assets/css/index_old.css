@@ -1,0 +1,120 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+  font-family: Century Gothic;
+    background-color: rgba(47, 8, 125, 0.15);
+   flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+   
+}
+
+.hr-shadow {
+    margin: 20px 0;
+    padding: 0;
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+   }
+
+
+/*карусель*/
+
+.carousel {
+    position: relative;
+    width: 500px;
+    overflow: hidden;
+    
+    margin: auto;
+}
+.carousel-item{
+   max-width: 800px;
+   margin: auto;
+   padding: 15px;
+    text-align: center;
+    position: relative;
+}
+
+ .img {
+    margin: 15px auto -60px;
+    width: 650px;
+    height: 550px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+ }
+ .card {
+    
+    padding: 80px 40px 40px;
+    border-radius: 10px;
+    
+    z-index: 1;
+ }
+ .card p {
+    font-style: italic;
+    line-height: 1.6;
+ }
+ .card span {
+    display: block;
+    margin-top: 20px;
+    
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+ }
+
+
+ .carousel-inner {
+   display: flex;
+   transition: transform 0.5s ease;
+ }
+  
+ a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+ }
+
+/* form*/
+.autorization{
+    width: 800px;
+    margin: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.autorization p{
+    margin: auto;
+}
+.text2{
+      width: 800px;
+      padding-bottom: 20px;
+}
+
+.forma{
+    padding-top: 50px;
+}
+.form{
+  
+    margin: auto;
+    display: table;
+
+}
+label,
+input{ display: table-cell;
+    margin-bottom: 10px;
+    font-size: 20px;
+
+}
+label{
+    padding-right: 10px;
+}
+
+
+   .container {
+    display: flex;
+    justify-content: center;
+
+        }

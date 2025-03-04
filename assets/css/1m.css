@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: Century Gothic;
+    margin: 0;
+    background-color: rgba(47, 8, 125, 0.15);
+    flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+.hr-shadow {
+    margin: 20px 0;
+    
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+   }
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    padding-left: 130px;
+    padding-bottom: 100px;
+}
+
+.main-container{ 
+  
+    display: flex;
+    justify-content: center;
+    
+}
+.main-img img {
+   padding-left: 50px;
+   width: 360px;
+   height: 320px;
+}
+.footer{
+  
+}
+.container {
+    display: flex;
+    justify-content: center;
+
+        }

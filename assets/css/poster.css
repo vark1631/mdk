@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{font-family: Century Gothic;
+    margin: 0;
+    background-color: rgba(47, 8, 125, 0.15);
+    height: 100%;
+   
+}
+
+.hr-shadow {
+    margin: 20px 0;
+    padding: 0;
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+   }
+
+main{
+   
+}
+.container2 {
+            
+              padding-left: 50px;
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    width: 800px;
+    margin: 20px auto;
+   
+              margin-top: 1.5rem !important;}
+
+   /* расписание*/
+    .timetable{
+      padding-bottom: 30px;
+      
+    }
+    .container1{
+  border: 1px solid black;
+    border-left: none;
+    border-right: none;
+   
+        font-size: 20px;
+        margin: auto;
+        width: 1000px;
+        display: grid;
+        grid-template-columns: 400px 100px 400px 700px;
+        padding-bottom: 80px;
+    }
+   .container{
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+        font-size: 20px;
+        margin: auto;
+        width: 1000px;
+        display: grid;
+        grid-template-columns: 400px 100px 400px 700px;
+        padding-bottom: 80px;
+     
+   }
+   ul, li{
+    
+    text-decoration: none;
+    list-style: none;
+   }
+   .ticket{
+    padding-top: 20px;
+   }
+   a{
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+ }
+
+  

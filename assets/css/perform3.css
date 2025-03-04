@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{font-family: Century Gothic;
+    margin: 0;
+    background-color: rgba(47, 8, 125, 0.15);
+    flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+}
+
+
+.hr-shadow {
+    margin: 20px 0;
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+   }
+
+
+main{
+    display: flex;
+    flex-direction: column;
+   
+}
+.main-char{
+    padding-right: 100px;
+}
+.main-img a{
+    padding-left: 40px;
+}
+.p{
+    border: 1px solid black;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    padding-bottom: 100px;
+
+}
+.main-container{ 
+    display: flex ;
+    margin: 0 auto;
+    width: 800px;
+    
+    
+}
+
+.photo{
+    padding-bottom: 100px;
+}
+ a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+ }
+   .container {
+            
+              padding-left: 100px;
+   
+    width: 800px;
+    margin: 20px auto;
+   
+              margin-top: 1.5rem !important;
+
+        }

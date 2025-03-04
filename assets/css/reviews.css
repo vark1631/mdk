@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: Century Gothic;
+    background-color: rgba(47, 8, 125, 0.15);
+   flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+ margin: 0;
+   
+}
+
+.hr-shadow {
+    margin: 20px 0;
+    padding: 0;
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+   }
+main{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+main {
+    display: block;
+    unicode-bidi: isolate;
+
+   
+}
+p {
+    font-size: 22px;
+}
+
+
+ a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+ }
+        .container {
+            
+              padding-left: 50px;
+    display: grid;
+    grid-template-columns: 
+        repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    width: 800px;
+    margin: 20px auto;
+   
+              margin-top: 1.5rem !important;
+
+        }
+        .card {
+            border: 2px solid rgba(0, 0, 0, 0.541);
+            text-align: center;
+          
+        }
+       

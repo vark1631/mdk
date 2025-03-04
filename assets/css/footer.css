@@ -1,0 +1,27 @@
+.con{
+  display: flex;
+    justify-content: center;
+    gap: 20rem;
+    align-items: center;
+    list-style: none;
+}
+ul,li{
+ list-style: none;
+ padding-bottom: 10px;
+} 
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+ }
+ footer{
+      height: 200px;
+      margin-top: auto;
+      border: 1px solid black;
+      border-bottom: none;
+       border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+    border-left: none;
+    border-right: none;
+      
+}

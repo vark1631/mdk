@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анастасия
+    </title>
+    <link rel="stylesheet" href="assets\css\1w.css" media="print" onload="this.media='all'">
+</head>
+<body><div id="header-container"></div>
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+  
+    <hr class="hr-shadow">
+    <main>  <h1 class="mt-5 container">Об актере</h1>
+        <div class="main-container">
+            <div class="main-char">
+          
+               <h2>Вельмискина Анастасия</h2>
+               <p>Родилась 7 января.</p>
+               <p>В 2014 году окончил СПбГАТИ (РГИСИ), специальность «Актерское искусство».
+               </p>
+               <p>В труппе театра с 2023 года</p>
+            
+
+            </div>
+        <div class="main-img">
+           <img src="assets\images\1w.jpg" alt="">
+        </div>
+    </main>
+    <div id="footer-container"></div>
+</body>
+</html>

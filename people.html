@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Актеры</title>
+    <link rel="stylesheet" href="assets\css\people.css" media="print" onload="this.media='all'">
+    <script>
+        setTimeout(() => {
+            window.location.href = "https://google.com";
+        }, 3000); // 3 секунды
+    </script>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+     
+    <hr class="hr-shadow">
+   
+    <main>
+               <h1 class="mt-5 container">Актеры</h1>
+            <div class="photo">
+               
+            <div class="item1">
+                 
+                    <a href="1w.html"> <img src="assets\images\1w.jpg" alt=""></a>
+                </div>
+                <div class="item2">
+                    <a href="1m.html"> <img src="assets\images\1m.jpg" alt=""></a>
+                </div>
+                <div class="item3">
+                    <a href="2m.html"> <img src="assets\images\2m.jpg" alt=""></a>
+                </div>
+                <div class="item4">
+                    <a href="2w.php"> <img src="assets\images\2w.jpg" alt=""></a>
+                </div>
+                <div class="item5">
+                    <a href="3m.php"> <img src="assets\images\3m.jpg" alt=""></a>
+                </div>
+                <div class="item6">
+                    <a href="3w.php"> <img src="assets\images\3w.jpg" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+    <div id="footer-container"></div>
+
+</body>
+</html>

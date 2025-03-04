@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты
+    </title>
+    <link rel="stylesheet" href="assets\css\contacts.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+     
+   
+    <hr class="hr-shadow">
+
+    <main> <h1 class="mt-5 container">Контакты</h1>
+        <div class="container">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2390.3608540606156!2d50.08739837697998!3d53.19344428615281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41661e3e9dc0f909%3A0x488c297c042beea!2z0YPQuy4g0JvRjNCy0LAg0KLQvtC70YHRgtC-0LPQviwgNCwg0KHQsNC80LDRgNCwLCDQodCw0LzQsNGA0YHQutCw0Y8g0L7QsdC7LiwgNDQzMDk5!5e0!3m2!1sru!2sru!4v1731562436777!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        <div class="contact-info">
+            <div class="info1"><p>Режим работы: Пн-Пт 10:00-18:00</p></div>    
+            <div class="info2"><p>Телефон:(927)-630-23-23</p></div>
+            <div class="info3"><p>Почта: ispv4-tyz@mail.ru</p></div>
+            <div class="info4"><p>Местоположение: Ул. Льва Толстого д. 4</p></div>
+        </div>
+
+       
+    </div>
+    </main>
+    <div id="footer-container"></div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Билеты
+    </title>
+    <link rel="stylesheet" href="assets\css\ticket.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+    
+    <hr class="hr-shadow">
+
+    <main><h1 class="mt-5 container">Виды билетов</h1>
+        <div class="ticket-container">
+            <div class="ticket-info">
+                <p>Стандартный билет:<br>
+                    - Цена: 1000 рублей.<br>
+                    - Скидка: 20% для студентов и школьников.<br>
+                    - Правила возврата: Возврат возможен за 24 часа до мероприятия с полным возвратом средств.</p>
+                <p>Семейный билет (2 взрослых + 2 детей):<br>
+                    - Цена: 2500 рублей.<br>
+                    - Скидка: 15% при покупке онлайн.<br>
+                    - Правила возврата: Полный возврат за 48 часов до мероприятия, 50% - за 24 часа.</p>
+                <p>Премиум-билет (ближайшие места):<br>
+                    - Цена: 2000 рублей.<br>
+                    - Скидка: 10% для групп от 5 человек.<br>
+                    - Правила возврата: Без возврата за 12 часов до мероприятия.</p>
+                <p>Корпоративный билет (от 10 человек):<br>
+                    - Цена: 3000 рублей (общая стоимость).<br>
+                    - Скидка: 25% на каждую десятую покупку.<br>
+                    - Правила возврата: Полный возврат за 72 часа до мероприятия, 50% - за 48 часов.</p>
+            </div>
+        </div>
+
+
+    </main>
+    <div id="footer-container"></div>
+</body>
+</html>

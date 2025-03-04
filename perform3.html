@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    </title>
+    <link rel="stylesheet" href="assets\css\perform3.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+    
+    <hr class="hr-shadow">
+    <main><h1 class="mt-5 container">О спектакле</h1>
+        <div class="photo">
+            <img src="assets\images\афиша3.webp" alt="">
+        </div>
+        <div class="main-container">
+            <div class="main-char">
+          
+               <h2>Манюня</h2>
+               <h2>Пьеса в одном действии для хора и весёлых артистов</h2>
+               <p>Сцены из романа в двух действиях</p>
+               <p>«Манюня» - светлая, пропитанная солнцем и запахами южного базара, потрясающе смешная и лиричная история о детстве, о двух девочках-подружках Наринэ и Манюне, постоянно попадающих в курьезные ситуации. Грозная, но добрая Ба - бабушка Манюни, доблестные отцы девочек, машина по имени Васидис, шаловливая, по-мальчишески геройская Каринка – вот уж с кем не приходится скучать в южном городке Берде.  
+               </p>
+               <p>В «Манюне» показано то самое теплое, озорное и полное весёлых приключений детство, которое делает человека счастливым на всю жизнь</p>
+               
+
+            </div>
+        <div class="main-img">
+           <p><b>Продолжительность</b> <br> 1 час 40 минут</p>
+           <p><b>Возрастные рекомендации</b><br>6+</p>
+           <p><b>Сценическая площадка</b><br>Большая сцена</p>
+           <p><b>Премьера</b><br>10.12.2014</p>
+           <a href="buy.php"><p class="p">Купить билет</p></a>
+        </div>
+    </main>
+    <div id="footer-container"></div>
+</body>
+</html>

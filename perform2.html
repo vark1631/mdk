@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ревизор
+    </title>
+    <link rel="stylesheet" href="assets\css\perform2.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    
+    <div id="header-container"></div>
+
+    <script>
+        // Функция для загрузки заголовка
+        function loadHeader() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'header.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('header-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке заголовка');
+                }
+            };
+            xhr.send();
+        }
+        </script>
+        <script>
+        // Функция для загрузки футера
+        function loadFooter() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'footer.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('footer-container').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Ошибка при загрузке футера');
+                }
+            };
+            xhr.send();
+        }
+        
+        // Вызов функций загрузки при загрузке страницы
+        window.onload = function() {
+            loadHeader();
+            loadFooter();
+        };
+    </script>
+    <hr class="hr-shadow">
+    <main><h1 class="mt-5 container">О спектакле</h1>
+        <div class="photo">
+            <img src="assets\images\афиша2.webp" alt="">
+        </div>
+        <div class="main-container">
+            <div class="main-char">
+          
+               <h2>Отцы и дети</h2>
+               <h2>Не такие, как мы...</h2>
+               <p>Сцены из романа в двух действиях</p>
+               <p>В родовое имение своего приятеля Аркадия приезжает студент, будущий врач, нигилист Евгений Базаров. Он не признаёт авторитеты и отрицает привычные человеческие ценности.  Любовь называет белибердой, непростительной дурью, но встречается с Анной Сергеевной Одинцовой, и к нему приходит чувство…
+               </p>
+               <p>Классика не может стареть. В этом еще раз убеждаешься, когда попадаешь в имение Кирсановых и наблюдаешь за, казалось бы, простой жизнью столь знакомых героев. Вот только персонажи Тургенева в спектакле Цхвиравы очень современные люди, несмотря на то, что живут в XIX веке и носят затертые шинели, картузы и поддевки.</p>
+               <p>«Отцы и дети» в СамАрте - это рассказ о жизни людей разных поколений, жизни, где главенствует любовь. </p>
+
+            </div>
+        <div class="main-img">
+           <p><b>Продолжительность</b> <br> 2 часа 15 минут</p>
+           <p><b>Возрастные рекомендации</b><br>12+</p>
+           <p><b>Сценическая площадка</b><br>Большая сцена</p>
+           <p><b>Премьера</b><br>18.10.2008</p>
+           <a href="buy.php"><p class="p">Купить билет</p></a>
+        </div>
+    </main>
+    
+   
+  
+    <div id="footer-container"></div>
+</body>
+</html>

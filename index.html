@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="assets\css\index.css" media="print" onload="this.media='all'">
+
+
+
+
+</head>
+
+<body><div id="header-container"></div>
+
+  <script>
+      // Функция для загрузки заголовка
+      function loadHeader() {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'header.html', true);
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                  document.getElementById('header-container').innerHTML = xhr.responseText;
+              } else {
+                  console.error('Ошибка при загрузке заголовка');
+              }
+          };
+          xhr.send();
+      }
+      </script>
+      <script>
+
+        
+      // Функция для загрузки футера
+      function loadFooter() {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'footer.html', true);
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                  document.getElementById('footer-container').innerHTML = xhr.responseText;
+              } else {
+                  console.error('Ошибка при загрузке футера');
+              }
+          };
+          xhr.send();
+      }
+      
+      // Вызов функций загрузки при загрузке страницы
+      window.onload = function() {
+          loadHeader();
+          loadFooter();
+      };
+  </script>
+ 
+    <hr class="hr-shadow">
+           <main><h1 class="mt-5 container">Главная</h1>
+            <div class="carousel">
+                <div class="carousel-inner">
+
+                  <div class="carousel-item">
+
+                    <img src="assets\images\афиша1.webp" alt="Image 1">
+                    <div class="card">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum cum facere libero porro dolorem unde hic ipsam consectetur animi aliquid.
+
+                        </p>
+                        <span><a href="perform1.html">о спектакле</a></span>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+
+                    <img src="assets\images\афиша2.webp" alt="Image 2">
+                    <div class="card">
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, aliquam. Accusamus libero laboriosam placeat aperiam officia inventore nostrum fugit nesciunt.
+                        </p>
+                        <span><a href="perform2.html">о спектакле</a></span>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets\images\афиша3.webp" alt="Image 3">
+        
+                    <div class="card">
+                        <p>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, molestias minus labore veniam modi sequi necessitatibus soluta aliquam? Minus, aut!
+                        </p>
+                        <span><a href="perform3.html">о спектакле</a></span>
+                     </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+
+       
+             
+            </main>
+              
+            <div class="autorization">
+              <div class="text2">
+                <h3>Подпишитесь и узнавайте о событиях первым</h3>
+                 <p>Отправляя эту форму я соглашаюсь с Политикой в отношении обработки персональных данных</p> 
+                  
+                 <p>Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных</p> 
+
+              </div>
+              <div class="forma">
+              <div class="form">
+                <form action="">
+                  <label for="name"> </label>
+                  <input type="text" name="name" id="name"  placeholder="Имя" required>
+                </form>
+              </div>
+              <div class="form">
+                <form action="">
+                  <label for="E-mail"> </label>
+                  <input type="email" name="email" id="email"  placeholder="Почта" required>
+                </form>
+              </div>
+              <div class="form">
+                <form action="">
+                  <input type="submit" value="Подписаться">
+                </form>
+                <div>
+                  <button class="custom-button"><a href="https://genius.com/" target="_blank">перейти</a></button>
+                </div>
+              </div>
+              </div>
+            </div>
+            <div id="footer-container"></div>
+  
+      
+              <script> let index = 0;
+
+                const items = document.querySelectorAll('.carousel-item');
+                const totalItems = items.length;
+        
+                function updateCarousel() {
+                    const carouselInner = document.querySelector('.carousel-inner');
+                    const offset = -index * 520; //  ширина элемента
+                    carouselInner.style.transform = `translateX(${offset}px)`;
+                }
+        
+                function nextSlide() {
+                    index = (index + 1) % totalItems;
+                    updateCarousel();
+                }
+        
+                setInterval(nextSlide, 3000); // Переключение слайдов каждые 3 секунды
+            </script>
+
+
+          
+           
+</body>
+</html>

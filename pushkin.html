@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>пушкинская карта
+    </title>
+    <link rel="stylesheet" href="assets\css\pushkin.css" media="print" onload="this.media='all'">
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <script>
+      // Функция для загрузки заголовка
+      function loadHeader() {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'header.html', true);
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                  document.getElementById('header-container').innerHTML = xhr.responseText;
+              } else {
+                  console.error('Ошибка при загрузке заголовка');
+              }
+          };
+          xhr.send();
+      }
+      </script>
+      <script>
+      // Функция для загрузки футера
+      function loadFooter() {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'footer.html', true);
+          xhr.onload = function() {
+              if (xhr.status === 200) {
+                  document.getElementById('footer-container').innerHTML = xhr.responseText;
+              } else {
+                  console.error('Ошибка при загрузке футера');
+              }
+          };
+          xhr.send();
+      }
+      
+      // Вызов функций загрузки при загрузке страницы
+      window.onload = function() {
+          loadHeader();
+          loadFooter();
+      };
+  </script>
+    <hr class="hr-shadow">
+    
+
+    <main><h1 class="mt-5 container">Пушкинская карта</h1>
+        <div class="content-container-3">
+          <div class="pushkin-info">
+            <div class="info1"><p>О программе: «Пушкинская карта» — это программа в России, позволяющая молодежи до 22 лет получать возможность посещать культурные мероприятия (театры, концерты, выставки) на бюджетные средства. </p></div>    
+  
+              <p>Кто может воспользоваться: <br>
+              - Граждане России в возрасте от 14 до 22 лет.</p>
+  
+            <p>Как воспользоваться:<br>
+              1. Зарегистрироваться в мобильном приложении «Госуслуги».<br>
+              2. Оформить Пушкинскую карту. <br>
+              3. Пополнить карту на сумму до 10 000 рублей в год. <br>
+              4. Выбрать мероприятия на сайте или в приложении, оплачивать их с помощью Пушкинской карты.</p>
+        </div>
+        </div>
+  
+  
+      </main>
+ 
+      <div id="footer-container"></div>
+    
+</body>
+</html>

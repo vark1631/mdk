@@ -123,7 +123,7 @@
                   <input type="submit" value="Подписаться">
                 </form>
                 <div>
-                  <button class="custom-button" onclick="incrementClick()"><a href="https://vark1631.github.io/mdk/index.html" target="_blank">Главная</a></button>
+                  <button class="custom-button"><a href="https://vark1631.github.io/mdk/index.html" onclick="countRedirect(event)" id="a_clean" target="_blank">Главная</a></button>
                 </div>
               </div>
               </div>
@@ -150,6 +150,57 @@
                 setInterval(nextSlide, 3000); // Переключение слайдов каждые 3 секунды
             </script>
 
+    <script type="module">
+    // Импортируем необходимые функции
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, updateDoc, getDoc, increment } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+
+    // Конфигурация Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDaU4gwPdSq_cmQ1eYlhfEr51ePikqmf_k",
+    authDomain: "amountclicks-5b910.firebaseapp.com",
+    databaseURL: "https://amountclicks-5b910-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "amountclicks-5b910",
+    storageBucket: "amountclicks-5b910.firebasestorage.app",
+    messagingSenderId: "751803016114",
+    appId: "1:751803016114:web:53d74859177c64e496baab",
+    measurementId: "G-EB867J8X0P"
+  };
+
+    // Инициализация Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);  // Для использования аналитики
+    const db = getFirestore(app); // Для работы с Firestore
+
+    // Функция обработки клика
+    window.countRedirect = async function (event) {
+      event.preventDefault(); // Остановить стандартный переход
+
+      const targetUrl = event.currentTarget.href;  // Получаем ссылку
+      const counterRef = doc(db, "analytics", "click_counter");  // Ссылка на документ
+
+      try {
+        const docSnap = await getDoc(counterRef);  // Получаем данные документа
+        if (docSnap.exists()) {
+          // Если документ существует, увеличиваем значение
+          await updateDoc(counterRef, { count: increment(1) });
+          console.log("✅ Firestore: Счётчик обновлён!");
+        } else {
+          // Если документа нет, создаём его с начальным значением
+          await setDoc(counterRef, { count: 1 });
+          console.log("🔥 Firestore: Создан новый счётчик!");
+        }
+      } catch (error) {
+        console.error("❌ Ошибка Firestore:", error);
+      }
+
+      // Переход по ссылке после записи в Firestore
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 500);  // Задержка на 500 мс, чтобы успел записаться счётчик
+    };
+  </script>
 
           
            

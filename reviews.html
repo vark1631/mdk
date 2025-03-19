@@ -77,6 +77,110 @@
         </div>
     </div>
 	</main>
+
+	<form id="reviewForm">
+    <input type="text" id="name" placeholder="Ваше имя" required />
+    <textarea id="review" placeholder="Ваш отзыв" required></textarea>
+    <button type="submit">Добавить отзыв</button>
+</form>
+
+<h2>Все отзывы:</h2>
+<div id="reviewsContainer"></div>
+
+
+	
     <div id="footer-container"></div>
+
+
+
+	<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDaU4gwPdSq_cmQ1eYlhfEr51ePikqmf_k",
+  authDomain: "amountclicks-5b910.firebaseapp.com",
+  databaseURL: "https://amountclicks-5b910-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "amountclicks-5b910",
+  storageBucket: "amountclicks-5b910.firebasestorage.app",
+  messagingSenderId: "751803016114",
+  appId: "1:751803016114:web:53d74859177c64e496baab",
+  measurementId: "G-EB867J8X0P"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  const reviewsRef = ref(database, 'reviews');
+</script>
+
+
+
+	<script type="module">
+  document.getElementById('reviewForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const review = document.getElementById('review').value;
+
+    if (name && review) {
+      push(reviewsRef, { name, review });
+      document.getElementById('reviewForm').reset();
+    }
+  });
+</script>
+
+
+
+
+	<script type="module">
+  function renderReplies(replyData, replyContainer, reviewKey) {
+    Object.entries(replyData || {}).forEach(([replyKey, reply]) => {
+      const replyElement = document.createElement('div');
+      replyElement.className = 'reply';
+      replyElement.innerHTML = `<strong>${reply.name}</strong>: ${reply.reply}`;
+      replyContainer.appendChild(replyElement);
+    });
+  }
+
+  onValue(reviewsRef, (snapshot) => {
+    const reviewsContainer = document.getElementById('reviewsContainer');
+    reviewsContainer.innerHTML = '';
+
+    snapshot.forEach((childSnapshot) => {
+      const { name, review, replies } = childSnapshot.val();
+      const reviewKey = childSnapshot.key;
+
+      const reviewElement = document.createElement('div');
+      reviewElement.className = 'review';
+      reviewElement.innerHTML = `<strong>${name}</strong>: ${review}`;
+
+      const replyContainer = document.createElement('div');
+      replyContainer.className = 'reply-container';
+      renderReplies(replies, replyContainer, reviewKey);
+
+      const replyForm = document.createElement('form');
+      replyForm.innerHTML = `
+        <input type="text" class="reply-name" placeholder="Ваше имя" required />
+        <input type="text" class="reply-text" placeholder="Ваш ответ" required />
+        <button type="submit">Ответить</button>
+      `;
+
+      replyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const replyName = replyForm.querySelector('.reply-name').value;
+        const replyText = replyForm.querySelector('.reply-text').value;
+
+        if (replyName && replyText) {
+          const replyRef = ref(database, `reviews/${reviewKey}/replies`);
+          push(replyRef, { name: replyName, reply: replyText });
+        }
+      });
+
+      reviewElement.appendChild(replyForm);
+      reviewElement.appendChild(replyContainer);
+      reviewsContainer.appendChild(reviewElement);
+    });
+  });
+</script>
+
 </body>
 </html>

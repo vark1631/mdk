@@ -61,4 +61,26 @@ p {
             text-align: center;
           
         }
+
+<style>
+  .review { 
+    margin-bottom: 15px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+  }
+
+  .reply-container { 
+    margin-left: 20px; 
+    border-left: 2px solid #ddd; 
+    padding-left: 10px; 
+  }
+
+  .reply { 
+    margin-top: 5px; 
+    font-size: 0.9em; 
+    color: #555; 
+  }
+</style>
+
        

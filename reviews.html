@@ -168,28 +168,49 @@ window.editReview = async (id, author, text) => {
     }
 };
 
-// Добавление комментария к отзыву
 window.addComment = async (reviewId) => {
     const commentInput = document.getElementById(`comment-${reviewId}`);
-    if (commentInput.value) {
-        await addDoc(collection(db, `reviews/${reviewId}/comments`), { text: commentInput.value });
-        commentInput.value = "";
-        loadComments(reviewId);
+    const commentText = commentInput.value.trim();
+
+    if (commentText) {
+        try {
+            // Добавляем комментарий в подколлекцию "comments" внутри отзыва
+            await addDoc(collection(db, `reviews/${reviewId}/comments`), { text: commentText });
+
+            console.log("Комментарий добавлен:", commentText);
+            
+            commentInput.value = "";
+            loadComments(reviewId);
+        } catch (error) {
+            console.error("Ошибка при добавлении комментария:", error);
+        }
+    } else {
+        alert("Комментарий не может быть пустым!");
     }
 };
+
 
 // Загрузка комментариев для отзыва
 async function loadComments(reviewId) {
     const commentsList = document.getElementById(`comments-${reviewId}`);
-    commentsList.innerHTML = "";
-    const commentsSnapshot = await getDocs(collection(db, `reviews/${reviewId}/comments`));
-    commentsSnapshot.forEach((doc) => {
-        const data = doc.data();
-        const li = document.createElement("li");
-        li.textContent = data.text;
-        commentsList.appendChild(li);
-    });
+    commentsList.innerHTML = ""; // Очищаем перед загрузкой
+
+    try {
+        const commentsSnapshot = await getDocs(collection(db, `reviews/${reviewId}/comments`));
+
+        commentsSnapshot.forEach((doc) => {
+            const data = doc.data();
+            const li = document.createElement("li");
+            li.textContent = data.text;
+            commentsList.appendChild(li);
+        });
+
+        console.log(`Загружены комментарии для отзыва ${reviewId}`);
+    } catch (error) {
+        console.error("Ошибка при загрузке комментариев:", error);
+    }
 }
+
 
 // Загружаем отзывы при старте
 loadReviews();

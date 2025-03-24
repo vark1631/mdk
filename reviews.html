@@ -145,6 +145,8 @@ async function loadReviews() {
 
 // Добавление отзыва
 addReviewBtn.addEventListener("click", async () => {
+	console.log("Кнопка 'Добавить отзыв' нажата!");
+
     if (reviewAuthor.value && reviewText.value) {
         await addDoc(reviewsCollection, { author: reviewAuthor.value, text: reviewText.value });
         reviewAuthor.value = "";

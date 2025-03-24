@@ -91,7 +91,31 @@
 	
     <div id="footer-container"></div>
 
+<script>
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDaU4gwPdSq_cmQ1eYlhfEr51ePikqmf_k",
+  authDomain: "amountclicks-5b910.firebaseapp.com",
+  databaseURL: "https://amountclicks-5b910-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "amountclicks-5b910",
+  storageBucket: "amountclicks-5b910.firebasestorage.app",
+  messagingSenderId: "751803016114",
+  appId: "1:751803016114:web:53d74859177c64e496baab",
+  measurementId: "G-EB867J8X0P"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const reviewsCollection = collection(db, "reviews");
+
+const reviewsList = document.getElementById("reviewsList");
+const reviewAuthor = document.getElementById("reviewAuthor");
+const reviewText = document.getElementById("reviewText");
+const addReviewBtn = document.getElementById("addReview");
+
+</script>
 
 
 </body>

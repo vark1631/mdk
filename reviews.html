@@ -78,11 +78,6 @@
     </div>
 	</main>
 
-	<form id="reviewForm">
-    <input type="text" id="name" placeholder="Ваше имя" required />
-    <textarea id="review" placeholder="Ваш отзыв" required></textarea>
-    <button type="submit">Добавить отзыв</button>
-</form>
 
 <h2>Все отзывы:</h2>
 <div id="reviewsContainer">
@@ -127,49 +122,28 @@ const addReviewBtn = document.getElementById("addReview");
 
 
 
-window.addComment = async (reviewId) => {
-    const commentInput = document.getElementById(`comment-${reviewId}`);
-    const commentText = commentInput.value.trim();
-
-    if (commentText) {
-        try {
-            // Добавляем комментарий в подколлекцию "comments" внутри отзыва
-            await addDoc(collection(db, `reviews/${reviewId}/comments`), { text: commentText });
-
-            console.log("Комментарий добавлен:", commentText);
-            
-            commentInput.value = "";
-            loadComments(reviewId);
-        } catch (error) {
-            console.error("Ошибка при добавлении комментария:", error);
-        }
-    } else {
-        alert("Комментарий не может быть пустым!");
-    }
-};
-
-
-async function loadComments(reviewId) {
-    const commentsList = document.getElementById(`comments-${reviewId}`);
-    commentsList.innerHTML = ""; // Очищаем перед загрузкой
-
-    try {
-        const commentsSnapshot = await getDocs(collection(db, `reviews/${reviewId}/comments`));
-
-        commentsSnapshot.forEach((doc) => {
-            const data = doc.data();
-            const li = document.createElement("li");
-            li.textContent = data.text;
-            commentsList.appendChild(li);
-        });
-
-        console.log(`Загружены комментарии для отзыва ${reviewId}`);
-    } catch (error) {
-        console.error("Ошибка при загрузке комментариев:", error);
-    }
+// Функция загрузки отзывов
+async function loadReviews() {
+    reviewsList.innerHTML = "";
+    const querySnapshot = await getDocs(reviewsCollection);
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <h3>${data.author}</h3>
+            <p>${data.text}</p>
+            <button onclick="deleteReview('${doc.id}')">Удалить</button>
+            <button onclick="editReview('${doc.id}', '${data.author}', '${data.text}')">Редактировать</button>
+            <ul id="comments-${doc.id}"></ul>
+            <input type="text" id="comment-${doc.id}" placeholder="Добавить комментарий">
+            <button onclick="addComment('${doc.id}')">Отправить</button>
+        `;
+        reviewsList.appendChild(li);
+        loadComments(doc.id);
+    });
 }
 
-
+// Добавление отзыва
 addReviewBtn.addEventListener("click", async () => {
     if (reviewAuthor.value && reviewText.value) {
         await addDoc(reviewsCollection, { author: reviewAuthor.value, text: reviewText.value });
@@ -179,14 +153,47 @@ addReviewBtn.addEventListener("click", async () => {
     }
 });
 
-
-
+// Удаление отзыва
 window.deleteReview = async (id) => {
     await deleteDoc(doc(db, "reviews", id));
     loadReviews();
 };
 
-	
+// Редактирование отзыва
+window.editReview = async (id, author, text) => {
+    const newText = prompt("Редактировать отзыв:", text);
+    if (newText) {
+        await updateDoc(doc(db, "reviews", id), { text: newText });
+        loadReviews();
+    }
+};
+
+// Добавление комментария к отзыву
+window.addComment = async (reviewId) => {
+    const commentInput = document.getElementById(`comment-${reviewId}`);
+    if (commentInput.value) {
+        await addDoc(collection(db, `reviews/${reviewId}/comments`), { text: commentInput.value });
+        commentInput.value = "";
+        loadComments(reviewId);
+    }
+};
+
+// Загрузка комментариев для отзыва
+async function loadComments(reviewId) {
+    const commentsList = document.getElementById(`comments-${reviewId}`);
+    commentsList.innerHTML = "";
+    const commentsSnapshot = await getDocs(collection(db, `reviews/${reviewId}/comments`));
+    commentsSnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement("li");
+        li.textContent = data.text;
+        commentsList.appendChild(li);
+    });
+}
+
+// Загружаем отзывы при старте
+loadReviews();
+
 </script>
 
 

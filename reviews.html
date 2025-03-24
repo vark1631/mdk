@@ -85,7 +85,17 @@
 </form>
 
 <h2>Все отзывы:</h2>
-<div id="reviewsContainer"></div>
+<div id="reviewsContainer">
+	<!-- Форма для добавления отзыва -->
+    <input type="text" id="reviewAuthor" placeholder="Ваше имя">
+    <textarea id="reviewText" placeholder="Ваш отзыв"></textarea>
+    <button id="addReview">Добавить отзыв</button>
+
+    <ul id="reviewsList"></ul>
+
+    <script type="module" src="app.js"></script>
+
+</div>
 
 
 	
@@ -115,6 +125,68 @@ const reviewAuthor = document.getElementById("reviewAuthor");
 const reviewText = document.getElementById("reviewText");
 const addReviewBtn = document.getElementById("addReview");
 
+
+
+window.addComment = async (reviewId) => {
+    const commentInput = document.getElementById(`comment-${reviewId}`);
+    const commentText = commentInput.value.trim();
+
+    if (commentText) {
+        try {
+            // Добавляем комментарий в подколлекцию "comments" внутри отзыва
+            await addDoc(collection(db, `reviews/${reviewId}/comments`), { text: commentText });
+
+            console.log("Комментарий добавлен:", commentText);
+            
+            commentInput.value = "";
+            loadComments(reviewId);
+        } catch (error) {
+            console.error("Ошибка при добавлении комментария:", error);
+        }
+    } else {
+        alert("Комментарий не может быть пустым!");
+    }
+};
+
+
+async function loadComments(reviewId) {
+    const commentsList = document.getElementById(`comments-${reviewId}`);
+    commentsList.innerHTML = ""; // Очищаем перед загрузкой
+
+    try {
+        const commentsSnapshot = await getDocs(collection(db, `reviews/${reviewId}/comments`));
+
+        commentsSnapshot.forEach((doc) => {
+            const data = doc.data();
+            const li = document.createElement("li");
+            li.textContent = data.text;
+            commentsList.appendChild(li);
+        });
+
+        console.log(`Загружены комментарии для отзыва ${reviewId}`);
+    } catch (error) {
+        console.error("Ошибка при загрузке комментариев:", error);
+    }
+}
+
+
+addReviewBtn.addEventListener("click", async () => {
+    if (reviewAuthor.value && reviewText.value) {
+        await addDoc(reviewsCollection, { author: reviewAuthor.value, text: reviewText.value });
+        reviewAuthor.value = "";
+        reviewText.value = "";
+        loadReviews();
+    }
+});
+
+
+
+window.deleteReview = async (id) => {
+    await deleteDoc(doc(db, "reviews", id));
+    loadReviews();
+};
+
+	
 </script>
 
 

@@ -94,9 +94,9 @@
     <div id="footer-container"></div>
 
 <script>
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+	
 const firebaseConfig = {
   apiKey: "AIzaSyDaU4gwPdSq_cmQ1eYlhfEr51ePikqmf_k",
   authDomain: "amountclicks-5b910.firebaseapp.com",

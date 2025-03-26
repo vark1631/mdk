@@ -88,3 +88,10 @@ p {
     width: 400px;
    
    }
+
+.form_class {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
